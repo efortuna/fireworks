@@ -12,7 +12,8 @@ class Fireworks extends StatelessWidget {
       this.delay: 3,
       this.child,
       this.maxHeight,
-      this.maxWidth});
+      this.maxWidth,
+      this.particle});
 
   /// The number of fireworks that are going on at any given time.
   final int numberOfExplosions;
@@ -22,9 +23,8 @@ class Fireworks extends StatelessWidget {
   /// 0 and `delay` seconds after the previous one finishes.
   final int delay;
 
-  /// The child that will be appearing across the screen. If nothing is
-  /// specified, by default a fireworks-like particle effect, from the
-  /// "pimp my button" package is used.
+  /// The child that will be appearing across the screen at the center of the
+  /// "explosion". If nothing is specified, by default we have an empty center.
   final Widget child;
 
   /// Provides the maximum height bounds within which this Fireworks effect
@@ -35,6 +35,11 @@ class Fireworks extends StatelessWidget {
   /// should occur. If not specified, this falls back to the screen width.
   final double maxWidth;
 
+  /// The particle effect to surround the child. By default this is the
+  /// `DemoParticle` effect, fromt the pimp_my_button package, giving a
+  /// fireworks effect. Set to null, for no effect.
+  final Particle particle;
+
   @override
   Widget build(BuildContext context) {
     var mediaQueryData = MediaQuery.of(context);
@@ -42,16 +47,17 @@ class Fireworks extends StatelessWidget {
     var height = maxHeight ?? mediaQueryData.size.longestSide;
     return Stack(
         children: List.generate(numberOfExplosions,
-            (i) => _OneFirework(delay, height, width, child)));
+            (i) => _OneFirework(delay, height, width, child, particle)));
   }
 }
 
 class _OneFirework extends StatefulWidget {
-  _OneFirework(this.delay, this.width, this.height, this.child);
+  _OneFirework(this.delay, this.width, this.height, this.child, this.particle);
   final int delay;
   final double width;
   final double height;
   final Widget child;
+  final Particle particle;
   @override
   _OneFireworkState createState() => _OneFireworkState();
 }
@@ -78,7 +84,7 @@ class _OneFireworkState extends State<_OneFirework> {
   Widget build(BuildContext context) {
     return Positioned(
       child: PimpedButton(
-        particle: widget.child == null ? null : DemoParticle(),
+        particle: widget.particle ?? DemoParticle(),
         pimpedWidgetBuilder: (context, controller) {
           _makeFirework(controller);
           return widget.child ??

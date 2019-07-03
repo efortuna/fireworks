@@ -1,3 +1,6 @@
+## [0.9.1] - 7/3/19                                                                 
+                                                                                   
+  * Added particle parameter to make particle effect customizable.
 
 ## [0.9.0] - 7/3/19                                                                 
                                                                                    
