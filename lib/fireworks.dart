@@ -24,7 +24,7 @@ class Fireworks extends StatelessWidget {
       this.child,
       this.maxHeight,
       this.maxWidth})
-      : particle = null;
+      : particle = _EmptyParticle();
 
   /// The number of fireworks that are going on at any given time.
   final int numberOfExplosions;
@@ -60,6 +60,12 @@ class Fireworks extends StatelessWidget {
         children: List.generate(numberOfExplosions,
             (i) => _OneFirework(delay, height, width, child, particle)));
   }
+}
+
+/// A particle that does nothing.
+class _EmptyParticle extends Particle {
+  @override
+  void paint(Canvas canvas, Size size, double progress, int seed) {}
 }
 
 class _OneFirework extends StatefulWidget {
