@@ -1,3 +1,7 @@
+## [0.9.2] - 7/3/19                                                                 
+                                                                                   
+  * Set default for particle to be DemoParticle as originally intended.
+
 ## [0.9.1] - 7/3/19                                                                 
                                                                                    
   * Added particle parameter to make particle effect customizable.

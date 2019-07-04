@@ -13,7 +13,18 @@ class Fireworks extends StatelessWidget {
       this.child,
       this.maxHeight,
       this.maxWidth,
-      this.particle});
+      Particle particle})
+      : particle = DemoParticle();
+
+  /// Convenience constructor for simply making the [child] appear at random
+  /// places around the screen, without a surrounding particle effect.
+  Fireworks.only(
+      {this.numberOfExplosions: 2,
+      this.delay: 3,
+      this.child,
+      this.maxHeight,
+      this.maxWidth})
+      : particle = null;
 
   /// The number of fireworks that are going on at any given time.
   final int numberOfExplosions;
@@ -84,7 +95,7 @@ class _OneFireworkState extends State<_OneFirework> {
   Widget build(BuildContext context) {
     return Positioned(
       child: PimpedButton(
-        particle: widget.particle ?? DemoParticle(),
+        particle: widget.particle,
         pimpedWidgetBuilder: (context, controller) {
           _makeFirework(controller);
           return widget.child ??
