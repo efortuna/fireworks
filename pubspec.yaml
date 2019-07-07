@@ -3,7 +3,7 @@ description: A new Flutter project.
 author: Emily Fortuna <efortuna@google.com>
 homepage: https://github.com/efortuna/fireworks
 
-version: 0.9.2
+version: 0.9.3
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"

@@ -1,3 +1,7 @@
+## [0.9.3 - 7/6/19                                                                 
+                                                                                   
+  * Fix issue throwing error on accessing Pimp button's controller after dispose.
+
 ## [0.9.2] - 7/3/19                                                                 
                                                                                    
   * Set default for particle to be DemoParticle as originally intended.
