@@ -82,13 +82,12 @@ class _OneFirework extends StatefulWidget {
 class _OneFireworkState extends State<_OneFirework> {
   double _x, _y;
   Random random = Random();
-  bool stop = false;
 
   _makeFirework(AnimationController controller) {
     var d = random.nextInt(widget.delay);
 
     Future.delayed(Duration(seconds: d), () {
-      if (!stop) {
+      if (mounted) {
         controller.forward(from: 0).then((_) async {
           setState(() {
             _x = random.nextInt(widget.width.toInt()).toDouble();
@@ -99,13 +98,6 @@ class _OneFireworkState extends State<_OneFirework> {
         });
       }
     });
-  }
-
-  @override
-  void dispose() {
-    // World's dumbest hack.
-    stop = true;
-    super.dispose();
   }
 
   @override
